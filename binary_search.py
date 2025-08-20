@@ -70,13 +70,14 @@ def count_rotations_linear(nums):
 
     return 0
             
-test_case = 4
-nums = tests[test_case]['input']['nums']
-query = tests[test_case]['output']
-result = count_rotations_linear(nums)
-print(f"Linear Search, test_case {test_case}: output from function {result} == actual output {query} ? {result == query}")
+# test_case = 4
+# nums = tests[test_case]['input']['nums']
+# query = tests[test_case]['output']
+# result = count_rotations_linear(nums)
+# print(f"Linear Search, test_case {test_case}: output from function {result} == actual output {query} ? {result == query}")
 
-#print(tests[0])
+
+
 # Test all cases at once
 for i in range(len(tests)):
     nums = tests[i]['input']['nums']

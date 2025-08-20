@@ -1,5 +1,3 @@
-This is a trial
+Demo
 
-
-created a branch and modified the file
-
+demo for linear search
