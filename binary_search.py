@@ -32,9 +32,9 @@ tests.append({
 tests.append({
     #the list contains repeating numbers
     "input" : {
-        "nums": [6, 6, 6, 2, 3, 4, 5, 5, 6]
+        "nums": [2, 2, 2, 2, 3, 4, 5, 5, 6, 6, 6]
     },
-    "output": 3
+    "output": 0
 })
 tests.append({
     #the list was rotated N number of times
@@ -60,22 +60,20 @@ tests.append({
 
 
 def count_rotations_linear(nums):
-    position = 0
+    lo, hi = 0, len(nums)-1
 
-    while position < len(nums)-1:
-        if nums[position] > nums[position + 1]:
-            return position + 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        #print(nums[mid])
 
-        position += 1
+        if nums[mid] < nums[mid - 1]:
+            return mid
+        elif nums[mid] < nums[hi]:
+            hi = mid - 1
+        else:
+            lo = mid + 1
 
     return 0
-            
-# test_case = 4
-# nums = tests[test_case]['input']['nums']
-# query = tests[test_case]['output']
-# result = count_rotations_linear(nums)
-# print(f"Linear Search, test_case {test_case}: output from function {result} == actual output {query} ? {result == query}")
-
 
 print("Running tests for count_rotations_linear function...")
 # Test all cases at once
