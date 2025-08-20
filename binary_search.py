@@ -16,6 +16,20 @@ tests.append({
     "output": 4
 })
 tests.append({
+    #the list was rotated 3 times
+    "input" : {
+        "nums": [8, 10, 12, 1 ,0, 1, 2, 4, 5, 6, 7, 5]
+    },
+    "output": 3
+})
+tests.append({
+    #the list was rotated 3 times
+    "input" : {
+        "nums": [16, 17, 14, 15, 18, 19 ,4, 5, 6, 7, 9, 10, 13, 15]
+    },
+    "output": 6
+})
+tests.append({
     #an empty list
     'input': {
         'nums' : []
@@ -59,6 +73,17 @@ tests.append({
 })
 
 
+#nums = [4, 5, 6, 7, 0, 1, 2]
+
+def side_on(lo, hi, mid, nums):
+    if nums[mid] < nums[mid - 1]:
+        return 'found'
+    elif nums[mid] > nums[hi]:
+        return 'right'
+    else:
+        return 'left'
+    
+
 def count_rotations_linear(nums):
     lo, hi = 0, len(nums)-1
 
@@ -66,12 +91,14 @@ def count_rotations_linear(nums):
         mid = (lo + hi) // 2
         #print(nums[mid])
 
-        if nums[mid] < nums[mid - 1]:
+        side = side_on(lo, hi, mid, nums)
+        if side == 'found':
             return mid
-        elif nums[mid] < nums[hi]:
-            hi = mid - 1
-        else:
+        elif side == 'right':
             lo = mid + 1
+        elif side == 'left':
+            hi = mid - 1
+            
 
     return 0
 
