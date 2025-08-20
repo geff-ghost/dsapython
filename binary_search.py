@@ -69,7 +69,8 @@ def count_rotations_linear(nums):
         position += 1
 
     return 0
-            
+
+print("Geff")
 test_case = 6
 nums = tests[test_case]['input']['nums']
 query = tests[test_case]['output']
