@@ -69,7 +69,6 @@ def count_rotations_linear(nums):
         position += 1
 
     return 0
-<<<<<<< HEAD
             
 # test_case = 4
 # nums = tests[test_case]['input']['nums']
@@ -78,7 +77,7 @@ def count_rotations_linear(nums):
 # print(f"Linear Search, test_case {test_case}: output from function {result} == actual output {query} ? {result == query}")
 
 
-
+print("Running tests for count_rotations_linear function...")
 # Test all cases at once
 for i in range(len(tests)):
     nums = tests[i]['input']['nums']
@@ -86,12 +85,3 @@ for i in range(len(tests)):
     result = count_rotations_linear(nums)
     is_correct = result == expected
     print(f"Test Case {i}: {is_correct} (Got: {result}, Expected: {expected})")
-=======
-
-print("Geff")
-test_case = 6
-nums = tests[test_case]['input']['nums']
-query = tests[test_case]['output']
-result = count_rotations_linear(nums)
-print(f"Linear Search, test_case {test_case} = {result} == {query} ? {result == query}")
->>>>>>> 0fe359a7bbea918f5a470aa5110c7c32738ea5ff
