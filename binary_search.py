@@ -73,7 +73,6 @@ tests.append({
 })
 
 
-#nums = [4, 5, 6, 7, 0, 1, 2]
 
 def side_on(lo, hi, mid, nums):
     if nums[mid] < nums[mid - 1]:
