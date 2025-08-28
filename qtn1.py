@@ -19,10 +19,10 @@ tests.append({
 })
 tests.append({
     'input' :{
-        'nums' : [8 ,9, 11, 12, 3, 4, 4, 4,  4, 4, 5, 5, 5],
+        'nums' : [8 ,9, 11, 12, 4, 4, 4,  4, 4, 5, 5, 5],
         'target' : 4
     },
-    'output' : 5
+    'output' : 4
 })
 tests.append({
     'input' :{
@@ -67,34 +67,39 @@ tests.append({
     'output' : 4
 })
 
-nums = [5, 6, 7, 8, 9, 1, 2, 3, 4, 5]
-target = 2
-output = 6
 
 def find_element(nums, target):
     lo, hi = 0, len(nums) - 1
 
     while lo <= hi:
         mid = (lo + hi) // 2
-        mid_number = nums[mid]
-        print(mid_number)
-
-        if target == mid_number:
+        if nums[mid] == target:
+            if nums[mid - 1] == target:
+                mid = mid - 1
+                return mid
             return mid
-        elif target < nums[hi]:
-            lo = mid + 1
+        
+        # check if the left half is sorted
+        if nums[lo] <= nums[mid]:
+            if nums[lo] <= target < nums[mid]:
+                hi = mid - 1
+            else:
+                lo = mid + 1
+        else:
+            # right half is sorted
+            if nums[mid] < target <= nums[hi]:
+                lo = mid + 1
+            else:
+                hi = mid - 1
 
     return 0
 
 
-# for i in range(len(tests)):
-#     nums = tests[i]['input']['nums']
-#     target = tests[i]['input']['target']
-#     output = tests[i]['output']
-#     result = find_element(nums, target)
-#     is_correct = result == output
+for i in range(len(tests)):
+    nums = tests[i]['input']['nums']
+    target = tests[i]['input']['target']
+    output = tests[i]['output']
+    result = find_element(nums, target)
+    is_correct = result == output
 
-#     print(f'Test {i}: {is_correct} - target: {target}, output: {result}, expected: {output}')
-
-result = find_element(nums, target)
-print(f'output: {result}')
+    print(f'Test {i}: {is_correct} - target: {target}, output: {result}, expected: {output}')
