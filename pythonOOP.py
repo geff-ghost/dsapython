@@ -29,7 +29,7 @@ class Item:
 
         for item in items:
             Item(
-                name= str(item.get('name')),
+                name= str(item['name']),
                 price= float(item['price']),
                 quantity= int(item['quantity']),
             )
@@ -49,4 +49,16 @@ class Item:
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
-print(Item.is_integer(7))
+class Phone(Item):
+    def __init__(self, name: str, price: float, quantity=0, broken_phones=0):
+        super().__init__(name, price, quantity)
+        self.broken_phones = broken_phones
+
+    def okay_phones(self):
+        pass
+
+phone1 = Phone('jscPhonev10', 500, 5, 1)
+phone2 = Phone('jscPhonnev20', 700, 5, 1)
+
+Item.instanciate_from_csv()
+print(Item.all)
