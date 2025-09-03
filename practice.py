@@ -1,7 +1,4 @@
 import time as t
-
-
-
 class TreeNode:
     def __init__(self, key):
         self.key = key
@@ -22,13 +19,52 @@ def parse_tuple(data):
 
     return node
 
-def inOrderTraversal(node):
+def display_keys(node, space= '\t', level= 0):
+    # print(node.key if node else None, level)
+
+    # if the node is empty
     if node is None:
+        print(space * level + 'None')
         return
-    inOrderTraversal(node.left)
-    print(node.key, end=' ')
-    inOrderTraversal(node.right)
+    
+    # if the node is a leaf
+    if node.left is None and node.right is None:
+        print(space * level + str(node.key))
+        return
+    
+    # if the node has children
+    display_keys(node.right, space, level + 1)
+    print(space * level + str(node.key))
+    display_keys(node.left, space, level + 1)
+
+def traverse_in_order(node):
+    if node is None:
+        return []
+    
+    return (traverse_in_order(node.left) + [node.key] + traverse_in_order(node.right))
+
+def tree_height(node):
+    if node is None:
+        return 0
+    return 1 + max(tree_height(node.left), tree_height(node.right))
+
+def tree_size(node):
+    if node is None:
+        return 0
+    return 1 + tree_size(node.left) + tree_size(node.right)
+
 
 tree = parse_tuple(tree_tuple)
 
-inOrderTraversal(tree)
+display_keys(tree)
+
+
+# height = traverse_in_order(tree)
+# print(height)
+
+height= tree_height(tree)
+
+print(height)
+
+size = tree_size(tree)
+print(size)
