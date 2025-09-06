@@ -1,29 +1,30 @@
 # the database for all the users
 
-class UserDatabase:
-    def __init__(self):
-        self.users = []
+class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
 
-    def insert_user(self, user):
-        i = 0
-        while i < len(self.users):
-            if self.users[i].username > user.username:
-                break
-            i += 1
+def parse_tuple(data):
+    if isinstance(data, tuple) and len(data) == 3:
+        node = TreeNode(data[1])
+        node.left = parse_tuple(data[0])
+        node.right = parse_tuple(data[2])
+    elif data is None:
+        node = None
+    else:
+        node = TreeNode(data)
 
-        self.users.insert(i, user)
+    return node
 
 
-    def find_user(self, username):
-        for user in self.users:
-            if user.username == username:
-                return user
-            else:
-                return None
 
-    def update_user(self, user):
-        target = self.find_user(user.username)
-        target.name, target.email = user.name, user.email
+tree_tuple = ((1, 3, None), 2, ((None, 3, 4), 5, (6, 7, 8)))
 
-    def list_all(self):
-        return self.users
+tree = parse_tuple(tree_tuple)
+
+print(tree)
+
+
+

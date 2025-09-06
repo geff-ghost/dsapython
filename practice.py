@@ -37,17 +37,20 @@ def display_keys(node, space= '\t', level= 0):
     print(space * level + str(node.key))
     display_keys(node.left, space, level + 1)
 
+# traverses the tree in an in-order manner
 def traverse_in_order(node):
     if node is None:
         return []
     
     return (traverse_in_order(node.left) + [node.key] + traverse_in_order(node.right))
 
+# returns the the lenght from the root node to the leaf node
 def tree_height(node):
     if node is None:
         return 0
     return 1 + max(tree_height(node.left), tree_height(node.right))
 
+# returns the number of nodes in the tree
 def tree_size(node):
     if node is None:
         return 0
