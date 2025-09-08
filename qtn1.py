@@ -5,6 +5,7 @@
 # in the list are unique
 # [5, 6, 9, 0, 2, 3, 4] the target number is 2 and occurs at position
 #  5
+from jovian.pythondsa import evaluate_test_cases
 
 
 
@@ -95,11 +96,14 @@ def find_element(nums, target):
     return 0
 
 
-for i in range(len(tests)):
-    nums = tests[i]['input']['nums']
-    target = tests[i]['input']['target']
-    output = tests[i]['output']
-    result = find_element(nums, target)
-    is_correct = result == output
+# for i in range(len(tests)):
+#     nums = tests[i]['input']['nums']
+#     target = tests[i]['input']['target']
+#     output = tests[i]['output']
+#     result = find_element(nums, target)
+#     is_correct = result == output
 
-    print(f'Test {i}: {is_correct} - target: {target}, output: {result}, expected: {output}')
+#     print(f'Test {i}: {is_correct} - target: {target}, output: {result}, expected: {output}')
+
+
+result = evaluate_test_cases(find_element, tests)
