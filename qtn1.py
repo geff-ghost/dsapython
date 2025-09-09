@@ -77,7 +77,7 @@ def find_element(nums, target):
         if nums[mid] == target:
             if nums[mid - 1] == target:
                 mid = mid - 1
-                return mid
+                # return mid
             return mid
         
         # check if the left half is sorted
