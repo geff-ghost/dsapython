@@ -1,81 +1,59 @@
+from test_cases import test
 from jovian.pythondsa import evaluate_test_case
-import random
 
-in_list = list(range(10000))
-out_list = list(range(10000))
-random.shuffle(in_list)
-
-test = {
-    'input': {
-        'nums': in_list
-    },
-    'output': out_list
-}
-
-def bubble_sort(nums):
+def bubble_sort(nums: list[int]) -> list[int]:
     nums = list(nums)
+    # print('bubble_sort:', nums)
+
+    # repeat the process n-1 times
     for _ in range(len(nums) - 1):
         for i in range(len(nums) - 1):
+            # print('i', i, nums[i], nums[i + 1])
+
             if nums[i] > nums[i + 1]:
                 nums[i], nums[i + 1] = nums[i + 1], nums[i]
 
     return nums
 
-def insertion_sort( nums):
+def insertion_sort(nums: list[int]) -> list[int]:
     nums = list(nums)
     for i in range(len(nums)):
-        key = nums[i]
+        key = nums.pop(i)
         j = i - 1
         while j >= 0 and nums[j] > key:
-            nums[j + 1] = nums[j]
             j -= 1
-        nums[j + 1] = key
+        nums.insert(j + 1, key)
+
     return nums
 
-def merge(nums1, nums2):
-    # list to store the results and indices
+def merge(nums1: list[int], nums2: list[int]) -> list[int]:
     i, j, merged = 0, 0, []
 
-    # loop over the two halves
     while i < len(nums1) and j < len(nums2):
-        # include smaller elements in the result and move to next element
         if nums1[i] <= nums2[j]:
             merged.append(nums1[i])
             i += 1
-        else:
+        else: 
             merged.append(nums2[j])
             j += 1
 
-    # get the remaining parts
     nums1_tail = nums1[i:]
     nums2_tail = nums2[j:]
 
-    # return the final merged array
     return merged + nums1_tail + nums2_tail
 
-
-def merge_sort(nums):
-    # terminating condition(list of 0 or 1 elements)
+def merge_sort(nums: list[int]) -> list[int]:
     if len(nums) <= 1:
         return nums
     
-    # get the midpoint
     mid = len(nums) // 2
-
-    # split the list into two halves
     left = nums[:mid]
     right = nums[mid:]
 
-    # solve the problem for each half respectively
     left_sorted, right_sorted = merge_sort(left), merge_sort(right)
-
-    # combine the results of the two halves
     sorted_nums = merge(left_sorted, right_sorted)
 
     return sorted_nums
 
 
-
-
 result = evaluate_test_case(merge_sort, test)
-
