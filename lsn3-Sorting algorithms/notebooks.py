@@ -1,3 +1,4 @@
+from merge_sort import merge_sort, compare_likes, compare_titles
 
 class Notebook:
     def __init__(self, title: str, username: str, likes: int):
@@ -20,7 +21,10 @@ nb9: Notebook = Notebook('python-numpy', 'siddhant', 92)
 
 notebooks: list = [nb0, nb1, nb3, nb4, nb5, nb6, nb7, nb8, nb9]
 
-nums: list[int] = [9,3, 6, 1, 9, 3,5, 7]
+sorted_notebooks = merge_sort(notebooks, compare_likes)
 
-likes: list[int] = [notebook.likes for notebook in notebooks]
-print(likes)
+for decreasing_likes in sorted_notebooks:
+    print(f"{decreasing_likes}\n")
+
+# likes = [decreasing_likes for decreasing_likes in sorted_notebooks]
+# print(likes)
