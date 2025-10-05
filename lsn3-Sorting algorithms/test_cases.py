@@ -1,8 +1,8 @@
 import random
 
-test = {
+test0 = {
     'input': {
-        'nums': [2, 4, 6, 8, 3, 8, 1, 7, 0, 5, 9]
+        'nums': [2, 4, 6, 8, 3, 1, 7, 0, 5, 9]
     },
     'output': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
@@ -16,7 +16,7 @@ test2 = {
     'input': {
         'nums': [9, 9, 9, 6, 6, 3, 3, 1, 1, 1]
     },
-    'output': [1, 1, 1, 3, 3, 3, 9, 9, 9]
+    'output': [1, 1, 1, 3, 3, 6, 6, 9, 9, 9]
 }
 test3 = {
     'input': {
@@ -47,6 +47,5 @@ test6 = {
     'output' : out_list
 }
 
-tests = [test, test1, test2, test3, test4, test5, test6]
+tests = [test0, test1, test2, test3, test4, test5]
 
-print(tests)
