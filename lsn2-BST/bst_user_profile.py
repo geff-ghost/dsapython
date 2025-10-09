@@ -1,16 +1,4 @@
-# As a senior backend engineer at Jovian, you are tasked with developinng
-# a fast in memory data structure to manage profile information(username, name, email)
-# for 100 million users. It should allow the following operations to be performed efficiently
-
-# 1. Insert the profile information for a new user
-# 2. Find the profile information for a user given there username
-# 3. Update the profile information for a user given there username
-# 4. List all the users in the platform, sorted by username
-
-# You can assume that usernames are unique
 from bst_user_database import UserDatabase
-
-
 class User:
     def __init__(self, username, name, email):
         self.username = username
@@ -19,22 +7,27 @@ class User:
 
     def __repr__(self):
         return "User(username= '{}', name= '{}', email= '{}')".format(self.username, self.name, self.email)
-    
-    def __str__(self):
-        return self.__repr__()
-    
 
-# User
+    # def __str__(self):
+    #     return self.__repr__
+
+
+
 aakash = User('aakash', 'Aakash Rai', 'aakash@example.com')
-siddhant = User('siddhant', 'Siddhant Rayaan', 'siddhant@example.com')
+biraj = User('biraj', 'Biraj Das', 'biraj@example.com')
+hemanth = User('hemanth', 'Hemanth Jain', 'hemanth@example.com')
+jadhesh = User('jadhesh', 'Jadhesh Verma', 'jadhesh@example.com')
+siddhant = User('siddhant', 'Siddhant Sinha', 'siddhant@example.com')
+sonaksh = User('sonaksh', 'Sonaksh Kumar', 'sonaksh@example.com')
+vishal = User('vishal', 'Vishal Goel', 'vishal@example.com')
+
 
 database = UserDatabase()
+database.insert(siddhant)
+database.insert(hemanth)
+database.insert(aakash)
 
-database.insert_user(aakash)
-database.insert_user(siddhant)
+database.update('siddhant')
 
-users = database.list_all()
-
-print(users)
-
-
+database.insert(biraj)
+database.list_all()
