@@ -27,7 +27,5 @@ database.insert(siddhant)
 database.insert(hemanth)
 database.insert(aakash)
 
-database.update('siddhant')
-
 database.insert(biraj)
 database.list_all()

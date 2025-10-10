@@ -20,7 +20,7 @@ class UserDatabase:
 
     def update(self, username):
         target = self.find(username)
-        target.name = str(input('update  name: '))
+        target.name = str(input('update name: '))
         target.email = str(input('update email: '))
 
     def list_all(self):
