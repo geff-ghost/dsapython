@@ -30,5 +30,3 @@ def locate_card(cards, query):
     
     return binary_search(0, len(cards)-1, condition)
 
-
-result = evaluate_test_cases(locate_card, tests)
