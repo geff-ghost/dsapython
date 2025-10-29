@@ -1,59 +1,79 @@
 
 class TreeNode:
-    def __init__(self, key):
+    def __init__(self, key, value=None):
         self.key = key
         self.left = None
         self.right = None
+        self.parent = None
 
-def inOrderTraversal(node):
-    if node is None:
-        return
-    inOrderTraversal(node.left)
-    print(node.key, end=',')
-    inOrderTraversal(node.right)
+    def height(self):
+        if self is None:
+            return 0
+        return 1 + max(TreeNode.height(self.left), TreeNode.height(self.right))
+    
+    def size(self):
+        if self is None:
+            return 0
+        return 1 + TreeNode.size(self.left) + TreeNode.size(self.right)
 
-def traverse_in_order(node):
-    if node is None:
-        return []
-    return (traverse_in_order(node.left) + [node.key] + traverse_in_order(node.right))
+    def traverse_in_order(self):
+        if self is None:
+            return []
+        return (TreeNode.traverse_in_order(self.left) 
+                + [self.key] 
+                + TreeNode.traverse_in_order(self.right))
 
-def display_keys(node, space='\t', level=0):
-    # print(node.key if node else None, level)
+    def display_keys(self, space='\t', level=0):
+        # if node is empty
+        if self is None:
+            print(space * level + '∅')
+            return
+        # if node is a leaf
+        if self.left is None and self.right is None:
+            print(space * level + str(self.key))
+            return
+        # if node has children
+        TreeNode.display_keys(self.right, space, level + 1)
+        print(space * level + str(self.key))
+        TreeNode.display_keys(self.left, space, level + 1)
 
-    # if the node is empty
-    if node is None:
-        print(space*level + 'None')
-        return
-    # if the node is a leaf
-    if node.left  is None and node.right is None:
-        print(space*level + str(node.key))
-        return
-    # if the node has children
-    display_keys(node.right, space, level+1)
-    print(space*level + str(node.key))
-    display_keys(node.left,space, level+1)
+    # write a function to convert the tree back to a tuple
+    def tree_to_tuple(self):
+        if self is None:
+            return None
+        if self.left is None and self.right is None:
+            return self.key
+        return (TreeNode.tree_to_tuple(self.left), self.key, TreeNode.tree_to_tuple(self.right))
 
-# write a function to convert the tree back to a tuple
-def tree_to_tuple(data):
-    ...
-
-def parse_tuple(data):
-    if isinstance(data, tuple) and len(data) == 3:
-        node = TreeNode(data[1])
-        node.left = parse_tuple(data[0])
-        node.right = parse_tuple(data[2])
-    elif data is None:
-        node = None
-    else:
-        node = TreeNode(data)
-    return node
+    def __str__(self):
+        return "Binary Tree <{}>".format(self.tree_to_tuple())
+    
+    def __repr__(self):
+        return "Binary Tree <{}>".format(self.tree_to_tuple())
+    
+    @staticmethod
+    def parse_tuple(data):
+        if isinstance(data, tuple) and len(data) == 3:
+            node = TreeNode(data[1])
+            node.left = TreeNode.parse_tuple(data[0])
+            node.right = TreeNode.parse_tuple(data[2])
+        elif data is None:
+            node = None
+        else:
+            node = TreeNode(data)
+        return node
 
 
 
-tuple = parse_tuple(((1,3,None),2,((None,3,4),5,(6,7,8))))
 
-# inOrderTraversal(tuple)
-display_keys(tuple,'  ')
+# tree_tuple = ((1,3,None),2,((None,3,4),5,(6,7,8)))
 
-in_order = traverse_in_order(tuple)
-print(in_order)
+# tree = TreeNode.parse_tuple(tree_tuple)
+# print(tree)
+# print("Height:", tree.height())
+# print("Size:", tree.size())
+# print("In-order Traversal:", tree.traverse_in_order())
+# tree.display_keys('  ')
+
+# print("Tree to Tuple:", tree.tree_to_tuple())
+

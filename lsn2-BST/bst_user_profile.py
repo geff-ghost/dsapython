@@ -1,4 +1,4 @@
-from bst_user_database import UserDatabase
+from nodes import TreeNode
 class User:
     def __init__(self, username, name, email):
         self.username = username
@@ -21,11 +21,10 @@ siddhant = User('siddhant', 'Siddhant Sinha', 'siddhant@example.com')
 sonaksh = User('sonaksh', 'Sonaksh Kumar', 'sonaksh@example.com')
 vishal = User('vishal', 'Vishal Goel', 'vishal@example.com')
 
+tree = TreeNode(jadhesh.username, jadhesh)
+tree.left = TreeNode(biraj.username, biraj)
+tree.parent = tree
+tree.right = TreeNode(sonaksh.username, sonaksh)
+tree.parent = tree
 
-database = UserDatabase()
-database.insert(siddhant)
-database.insert(hemanth)
-database.insert(aakash)
-
-database.insert(biraj)
-database.list_all()
+tree.display_keys()

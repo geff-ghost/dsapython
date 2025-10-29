@@ -1,29 +1,42 @@
+from bst_user_profile import jadhesh, biraj, sonaksh
 
+class BSTNode:
+    def __init__(key, value=None):
+        self.key = key
+        self.value = value
+        self.left = None
+        self.right = None
+        self.parent = None
 
-class UserDatabase:
-    def __init__(self):
-        self.users = []
+    def display_keys(self, node, space='\t', level=0):
+        # if node is empty
+        if node is None:
+            print(space * level + '∅')
+            return
+        # if node is a leaf
+        if node.left is None and node.right is None:
+            print(space * level + str(node.key))
+            return
+        # if node has children
+        TreeNode.display_keys(node.right, space, level + 1)
+        print(space * level + str(node.key))
+        TreeNode.display_keys(node.left, space, level + 1)
 
-    def insert(self, user):
-        i = 0
-        while i < len(self.users):
-            # find the first username greater then new user's username
-            if self.users[i].username > user.username:
-                break
-            i += 1
-        self.users.insert(i, user)
+def insert(node, key, value):
+    if node is None:
+        node = BSTNode(key, value)
+    elif key < node.key:
+        node.left = BSTNode(node.left, key, value)
+        node.left.parent = node
+    elif key > node.key:
+        node.right = insert(node.right, key, value)
+        node.right.parent = node
 
-    def find(self, username):
-        for user in self.users:
-            if user.username == username:
-                return user
+    return node
 
-    def update(self, username):
-        target = self.find(username)
-        target.name = str(input('update name: '))
-        target.email = str(input('update email: '))
+tree = insert(jadhesh, biraj.username, biraj)
 
-    def list_all(self):
-        for user in self.users:
-            print(user)
+root = BSTNode(jadhesh.username, jadhesh)
+
+root.display_keys(tree)
             
