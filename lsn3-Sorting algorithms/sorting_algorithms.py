@@ -1,5 +1,5 @@
 from tests import tests
-test = tests[0]
+test = tests[7]
 
 
 def bubble_sort(nums: list[int]):
@@ -24,8 +24,36 @@ def insertion_sort(nums):
     
     return nums
 
+def merge(left, right):
+    i, j, merged = 0, 0, []
+    
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    
+    return merged
 
-sorted_arr = insertion_sort(test['input']['nums'])
+def merge_sort(nums):
+    if len(nums) <= 1:
+        return nums
+    
+    mid = len(nums) // 2
+    left = nums[:mid]
+    right = nums[mid:]
+    
+    left_sorted = merge_sort(left)
+    right_sorted = merge_sort(right)
+    
+    return merge(left_sorted, right_sorted)
+
+
+sorted_arr = merge_sort(test['input']['nums'])
 
 print(f'Unsorted arr: {test["input"]['nums']}')
 print(f'Expected output: {test['output']}')
