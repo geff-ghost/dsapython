@@ -42,8 +42,9 @@ nb9 = Notebook('python-numpy', 'siddhant', 98)
 notebooks = [nb0, nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9]
 
 
-# sorted_notebooks = merge_sort(notebooks, compare_likes)
-sorted_notebooks = merge_sort(notebooks, compare_titles)
+if __name__ == '__main__':
+    sorted_notebooks = merge_sort(notebooks, compare_likes)
+    # sorted_notebooks = merge_sort(notebooks, compare_titles)
 
-for notebook in sorted_notebooks:
-    print(notebook)
+    for notebook in sorted_notebooks:
+        print(notebook)
