@@ -95,3 +95,5 @@ print(f'Unsorted arr: {test["input"]['nums']}')
 print(f'Expected output: {test['output']}')
 print(f'Actual output: {sorted_arr}')
 print('Match: ',sorted_arr == test['output'])
+
+print(isinstance(sorted_arr, list))
