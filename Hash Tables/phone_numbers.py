@@ -12,18 +12,18 @@ phone_numbers = {
     
 }
 
+if __name__ == '__main__':
+    basic_table = BasicHashTable()
 
-basic_table = BasicHashTable()
+    for key, value in phone_numbers.items():
+        basic_table.insert(key, value)
+        
+    alice = basic_table.find('Alice')
+    print(f'Alice tell: {alice}')
+        
+    basic_table.update('Bob', '455-3456')
+    bob = basic_table.find('Bob')
+    print(f'Bob: {bob}')
 
-for key, value in phone_numbers.items():
-    basic_table.insert(key, value)
-    
-alice = basic_table.find('Alice')
-print(f'Alice tell: {alice}')
-    
-basic_table.update('Bob', '455-3456')
-bob = basic_table.find('Bob')
-print(f'Bob: {bob}')
-
-keys = basic_table.list_all()
-print(keys)
+    keys = basic_table.list_all()
+    print(keys)

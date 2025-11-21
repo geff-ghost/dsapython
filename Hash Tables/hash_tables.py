@@ -32,7 +32,7 @@ class BasicHashTable:
         
     def list_all(self):
         # store the new key-value pair at the right index
-        return [kv for kv in self.data_list if kv is not None]
+        return [kv[0] for kv in self.data_list if kv is not None]
     
     @staticmethod
     def get_index(data_list, a_string):
