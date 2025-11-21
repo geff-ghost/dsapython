@@ -55,6 +55,11 @@ class BasicHashTable:
             if kv is None:
                 return idx
             
+            # if the stored key matches the given key, return the index
+            k, v = kv
+            if k == key:
+                return idx
+            
             # Move to the next index
             idx += 1
             
