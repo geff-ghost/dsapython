@@ -1,80 +1,36 @@
-from nodes import root, Node
+from bst_user_database import TreeMap
+class User:
+    def __init__(self, username, name, email):
+        self.name = name
+        self.username = username
+        self.email = email
+        
+    def __repr__(self):
+        return "User(username = '{}', name = '{}', email = '{}')".format(self.username, self.name, self.email)
+        
+aakash = User('aakash', 'Aakash Rai', 'aakash@example.com')
+biraj = User('biraj', 'Biraj Das', 'biraj@example.com')
+hemanth = User('hemanth', 'Hemanth Jain', 'hemanth@example.com')
+jadhesh = User('jadhesh', 'Jadhesh Verma', 'jadhesh@example.com')
+siddhant = User('siddhant', 'Siddhant Sinha', 'siddhant@example.com')
+sonaksh = User('sonaksh', 'Sonaksh Kumar', 'sonaksh@example.com')
+vishal = User('vishal', 'Vishal Goel', 'vishal@example.com')
+geff = User('geff', 'Geoffrey Odhiambo', 'geff@example.com')
 
-def preOrderTraversal(node):
-    if node is None:
-        return
-    print(node.data, end = ',')
-    preOrderTraversal(node.left)
-    preOrderTraversal(node.right)
+treemap = TreeMap()
+treemap['aakash'] = aakash
+treemap['jadhesh'] = jadhesh
+treemap['sonaksh'] = sonaksh
 
-def inOrderTraversal(node):
-    if node is None:
-        return
-    inOrderTraversal(node.left)
-    print(node.data, end=',')
-    inOrderTraversal(node.right)
+treemap['geff'] = geff
 
-def postOrderTraversal(node):
-    if node is None:
-        return
-    postOrderTraversal(node.left)
-    postOrderTraversal(node.right)
-    print(node.data, end=',')
+treemap.display()
 
+# value = treemap['jadhesh']
+# print(value)
 
-def search(node, target):
-    if node is None:
-        return None
-    elif node.data == target:
-        return node
-    elif node.data > target:
-        return search(node.right, target)
-    else:
-        return search(node.left, target)
+for key, value in treemap:
+    print(key, value)
     
-def minValue(node):
-    current = node
-    while current.left is not None:
-        current = current.left
-    return current
-
-def delete(node, data):
-    if not node:
-        return None
+print(len(treemap))
     
-    if data < node.data:
-        node.left = delete(node.left, data)
-    elif data > node.data:
-        node.right = delete(node.right, data)
-    else:
-        # node with one child
-        if not node.left:
-            temp = node.right
-            node = None
-            return temp
-        elif not node.right:
-            temp = node.left
-            node = None
-            return temp
-        # node with two children
-        node.data = minValue(node.right).data
-        node.right = delete(node.right, node.data)
-    return node
-
-def insert(node, data):
-    if node is None:
-        return Node(data)
-    else:
-        if data < node.data:
-            node.left = insert(node.left, data)
-        elif data > node.data:
-            node.right = insert(node.right, data)
-    return node
-
-
-node = insert(root, 11)
-inOrderTraversal(root)
-
-print('\n')
-result = delete(root, 15)
-inOrderTraversal(root)
