@@ -42,9 +42,9 @@ class HashTable:
         else:
             key, value = kv
             return value
-    
+        
+    # the logic for 'insert/update' is implemented here
     def __setitem__(self, key, value):
-        # the logic for 'insert/update' is implemented here
         # find the idx for the key using get_index
         idx = self.get_valid_index(key)
         
@@ -57,24 +57,10 @@ class HashTable:
     def __len__(self):
         return len([x for x in self])
     
-    def __repr__(self):
-        key, value, ch = [kv for kv in self.data_list if kv is not None]
-        return 'User: {}---> Tell: {} ---{}'.format(key, value, ch)
+    # def __repr__(self):
+    #     key, value, ch = [kv for kv in self.data_list if kv is not None]
+    #     return 'User: {}---> Tell: {} ---{}'.format(key, value, ch)
         
         
-    def __str__(self):
-        return repr(self)
-    
-tree = HashTable()
-tree['Aaron'] = '999-3453'
-tree['Jack'] = '783-2234'
-tree['Miraa'] = '923-9830'
-
-print(tree['Jay'])
-
-print('')
-
-print(list(tree))
-
-print('')
-print(tree)
+    # def __str__(self):
+    #     return repr(self)

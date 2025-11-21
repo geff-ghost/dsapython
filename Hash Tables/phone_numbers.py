@@ -1,4 +1,4 @@
-from hash_tables import BasicHashTable
+from class_hash_tables import HashTable
 
 phone_numbers = {
     "Alice": "555-1234",
@@ -13,17 +13,23 @@ phone_numbers = {
 }
 
 if __name__ == '__main__':
-    basic_table = BasicHashTable()
+    basic_table = HashTable()
 
+    # inserting key-value pairs
     for key, value in phone_numbers.items():
-        basic_table.insert(key, value)
+        basic_table[key] = value
         
-    alice = basic_table.find('Alice')
+    # finding a value from the hash table
+    alice = basic_table['Alice']
     print(f'Alice tell: {alice}')
         
-    basic_table.update('Bob', '455-3456')
-    bob = basic_table.find('Bob')
+    # updating a value
+    basic_table['Bob'] = '455-3456'
+    bob = basic_table['Bob']
     print(f'Bob: {bob}')
 
-    keys = basic_table.list_all()
-    print(keys)
+    print('')
+    print(list(basic_table))
+    
+    print('')
+    print(len(basic_table))
