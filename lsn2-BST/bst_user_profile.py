@@ -1,4 +1,3 @@
-from bst_user_database import TreeMap
 class User:
     def __init__(self, username, name, email):
         self.username = username
