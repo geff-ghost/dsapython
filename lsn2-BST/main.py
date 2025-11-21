@@ -9,16 +9,17 @@ siddhant = User('siddhant', 'Siddhant Sinha', 'siddhant@example.com')
 sonaksh = User('sonaksh', 'Sonaksh Kumar', 'sonaksh@example.com')
 vishal = User('vishal', 'Vishal Goel', 'vishal@example.com')
 
-if __name__ == '__main__':
-    treemap = TreeMap()
+treemap = TreeMap()
 
-    treemap['aakash'] = aakash
-    treemap['biraj'] = biraj
-    treemap['vishal'] = vishal
-    treemap['siddhant'] = siddhant
-    treemap['sonaksh'] = sonaksh
-    treemap['jadhesh'] =jadhesh
-    treemap['hemanth'] = hemanth
+treemap['aakash'] = aakash
+treemap['biraj'] = biraj
+treemap['vishal'] = vishal
+treemap['siddhant'] = siddhant
+treemap['sonaksh'] = sonaksh
+treemap['jadhesh'] =jadhesh
+treemap['hemanth'] = hemanth
+
+if __name__ == '__main__':
 
     print('Displaying the Users')
     # displaying the tree
@@ -28,5 +29,12 @@ if __name__ == '__main__':
     print(treemap['jadhesh'].email)
     
     # updating a value
-    treemap['jadhesh'] = User('jadhesh', 'Jadhesh Aaron', 'jadhesh@new_example')
+    treemap['jadhesh'] = User(username='jadhesh', name='Jadhesh Aaron', email='jadhesh@new_example')
     print(treemap['jadhesh'].email)
+    
+    # list of all the values
+    print(list(treemap))
+    
+    # length of the list of users
+    print(len(treemap))
+    
