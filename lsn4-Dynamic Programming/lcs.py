@@ -32,5 +32,22 @@ def lcs_memo(seq1, seq2):
     return recurse(0, 0)
 
 
+def lcs_dp(seq1, seq2):
+    n1, n2 = len(seq1), len(seq2)
+    table = [[0 for j in range(n2+1)] for x in range(n1+1)]
+    values = []
+    for i in range(n1):
+        for j in range(n2):
+            if seq1[i] == seq2[j]:
+                table[i+1][j+1] = 1 + table[i][j]
+                values.append(seq1[i])
+            else:
+                table[i+1][j+1] = max(table[i][j+1], table[i+1][j])
+    
 
-evaluate_test_cases(lcs_memo, lcs_tests)
+    return table[-1][-1], ''.join(values)
+seq1 = 'densed'
+seq2 = 'codensed'
+
+value, keys = lcs_dp(seq1, seq2)
+print(keys, value)
