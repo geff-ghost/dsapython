@@ -2,7 +2,7 @@ from jovian.pythondsa import evaluate_test_cases
 from test_cases import lcs_tests
 
 
-# brute force solution
+# function implementation using recursion
 def lcs_recursive(seq1, seq2, idx1=0, idx2=0):
     if idx1 == len(seq1) or idx2 == len(seq2):
         return 0
