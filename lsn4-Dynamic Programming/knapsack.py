@@ -23,4 +23,24 @@ def max_profits_recursive(weights, profits, capacity, idx=0):
 
         return max(option1, option2)
 
-evaluate_test_cases(max_profits_recursive, tests)
+
+# knapsack implementation using memorization
+def max_profits_memo(weights, profits, capacity, idx=0):
+    memo = {}
+    def recurse(capacity, idx):
+        key = (capacity, idx)
+        if key in memo:
+            return memo[key]
+        elif idx == len(weights):
+            return 0
+        elif weights[idx] > capacity:
+            memo[key] = recurse(capacity, idx+1)
+        else:
+            option1 = recurse(capacity, idx+1)
+            option2 = profits[idx] + recurse(capacity-weights[idx], idx+1)
+            memo[key] = max(option1, option2)
+        return memo[key]
+    return recurse(capacity, idx)
+
+
+evaluate_test_cases(max_profits_memo, tests)
