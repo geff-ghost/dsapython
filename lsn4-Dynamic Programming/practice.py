@@ -1,5 +1,5 @@
 from jovian.pythondsa import evaluate_test_cases
-from test_cases import lcs_tests
+from test_cases_lcs import lcs_tests
 
 # implementation using recursion
 def lcs_recursive(seq1, seq2, idx1=0, idx2=0):
