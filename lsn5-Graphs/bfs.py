@@ -1,3 +1,5 @@
+from collections import deque
+
 
 class Node:
     def __init__(self, data):
@@ -10,6 +12,7 @@ class BinaryTree:
         self.root = None
 
     def insertNode(self, data):
+        """Inserts a new node into the BinaryTree"""
         if not self.root:
             self.root = Node(data)
             return self.root
@@ -19,6 +22,7 @@ class BinaryTree:
         return self.root
 
     def _insert_recursive(self, curr, value):
+        """Helper method to find the correct position for a new node."""
         if value <= curr.data:
             if curr.left is None:
                 curr.left = Node(value)
@@ -37,12 +41,12 @@ class BinaryTree:
         """
         if not self.root:
             return []
-        queue = [self.root]
+        queue = deque([self.root])
         result = []
 
         while queue:
-            # pop the first element in the queue
-            curr = queue.pop(0)
+            # FIFO: pop the first element in the queue
+            curr = queue.popleft()
             result.append(curr.data)
             # checking whether the current element has both left and right child nodes and adding them to the queue
             if curr.left:
@@ -53,15 +57,20 @@ class BinaryTree:
         return result
 
     def dfs(self):
+        """
+        Depth-First Search (Pre-order Traversal) using an explicit Stack
+        Explores branches as deeply as posible before bachtracking
+        """
         if not self.root:
             return []
         stack = [self.root]
         result = []
 
         while stack:
-            # pop() removes the last element that was added
+            # LIFO: pop() removes the last element that was added
             curr = stack.pop()
             result.append(curr.data)
+            # Push child nodes: right first then left child
             if curr.right:
                 stack.append(curr.right)
             if curr.left:
@@ -71,6 +80,7 @@ class BinaryTree:
 
 
     def _OrderedTraversal(self, node):
+        """Helper method to rearrange the nodes in order"""
         if node is None:
             return []
         return (
@@ -94,8 +104,8 @@ for val in arr:
 print(f"InOrderTraversal: {tree.inOrderTraversal()}")
 print('')
 
-print(f"Breath-First Search(queue): {tree.bfs()}")
+print(f"Breath-First Search: {tree.bfs()}")
 print('')
 
-print(f'Depth-First Search(stack): {tree.dfs()}')
+print(f'Depth-First Search: {tree.dfs()}')
 
