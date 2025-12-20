@@ -5,10 +5,9 @@ class Graph:
         self.size = size
         self.vertex_data = [''] * size
 
-    def add_edge(self, u, v):
+    def add_edge(self, u, v, weight):
         if 0 <= u < self.size and 0 <= v < self.size:
-            self.adj_matrix[u][v] = 1
-            self.adj_matrix[v][u] = 1
+            self.adj_matrix[u][v] = weight
 
     def add_vertex_data(self, vertex, data):
         if 0 <= vertex < self.size:
@@ -28,10 +27,10 @@ g.add_vertex_data(0, 'A')
 g.add_vertex_data(1, 'B')
 g.add_vertex_data(2, 'C')
 g.add_vertex_data(3, 'D')
-g.add_edge(0, 1)
-g.add_edge(0, 2)
-g.add_edge(0, 3)
-g.add_edge(1, 2)
+g.add_edge(0, 1, 3)
+g.add_edge(0, 2, 2)
+g.add_edge(3, 0, 4)
+g.add_edge(2, 1, 1)
 
 
 g.print_graph()
